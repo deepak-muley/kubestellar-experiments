@@ -1,0 +1,15 @@
+# Selects every ManagedCluster labeled location-group=edge
+# and every object labeled app.kubernetes.io/name=nginx.
+# Upstream scenario 1: https://github.com/kubestellar/docs/blob/main/docs/content/kubestellar/example-scenarios.md
+apiVersion: control.kubestellar.io/v1alpha1
+kind: BindingPolicy
+metadata:
+  name: nginx-bpolicy
+spec:
+  clusterSelectors:
+    - matchLabels:
+        location-group: edge
+  downsync:
+    - objectSelectors:
+        - matchLabels:
+            app.kubernetes.io/name: nginx
